@@ -1,0 +1,60 @@
+body{
+  display: flex;
+  justify-content: center;
+  background-color: #57606f;
+  font-family: HelveticanueMedium;
+  font-size: 15px;
+  padding-top: 15px;
+}
+.App{
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  height: 600px;
+  flex-wrap: wrap;
+  padding: 10px;
+  animation-duration: 1s;
+animation-name: appear ;
+
+}
+
+@font-face {
+  font-family: 'HelveticanueMedium';
+  src: url('../fonts/HelveticaNeueCyr-Roman.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HelveticanueBold';
+  src: url('../fonts/HelveticaNeueCyr-Bold.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+button{
+  cursor: pointer;
+  background-color: #1e90ff;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  margin:8px;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  outline:none;
+ box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.28);
+}
+/* button:disabled{
+  background: grey;
+} */

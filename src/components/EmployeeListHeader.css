@@ -1,0 +1,15 @@
+.employee-header{
+  display: flex;
+  flex-direction: row;
+  background-color: #f1f2f6;
+  margin-top:10px;
+}
+.employee-header div{
+  margin: 10px;
+  margin-right: 50px;
+
+}
+
+.sort{
+  cursor: pointer;
+}
