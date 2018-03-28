@@ -1,13 +1,13 @@
 import React from "react";
 
-const Button = ({ onClick, name, color, disabled }) => {
+const Button = ({...props }) => {
   return (
     <button
-      style={{ backgroundColor: `${disabled ? "grey" : color}` }}
-      disabled={disabled}
-      onClick={onClick}
+      style={{ backgroundColor: `${props.disabled ? "grey" : props.color}` }}
+      disabled={props.disabled}
+      onClick={props.onClick}
     >
-      {name}
+      {props.name}
     </button>
   );
 };

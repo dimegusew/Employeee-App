@@ -1,35 +1,35 @@
 import React from "react";
 import "./EmployeeListHeader.css";
 
-const SortParam = ({ onClick, type, sortDirection, name }) => {
+const SortParam = ({...props }) => {
   return (
-    <div className="sort" id={type} onClick={onClick}>
-      {name}
-      {!sortDirection ? "▲" : "▼"}
+    <div className="sort" id={props.type} onClick={props.onClick}>
+      {props.name}
+      {!props.isReverseSort ? "▲" : "▼"}
     </div>
   );
 };
 
-const EmployeesListHeader = ({ onClick, sortDirection }) => {
+const EmployeesListHeader = ({ onClick, isReverseSort }) => {
   return (
     <div className="employee-header">
       <SortParam
         type="Surname"
         onClick={onClick}
         name={"Фамилия"}
-        sortDirection={sortDirection.Surname}
+        isReverseSort={isReverseSort.Surname}
       />
       <SortParam
         type="Name"
         name={"Имя"}
         onClick={onClick}
-        sortDirection={sortDirection.Name}
+        isReverseSort={isReverseSort.Name}
       />
       <SortParam
         type="Position"
         name={"Должность"}
         onClick={onClick}
-        sortDirection={sortDirection.Position}
+        isReverseSort={isReverseSort.Position}
       />
       <div>Телефон</div>
     </div>

@@ -1,118 +1,60 @@
-import React from "react";
-import "./EditEmployeeCard.css";
-import Button from "./Button.js";
-import InputMask from "react-input-mask";
+import React from 'react';
+import './EditEmployeeCard.css';
+import Button from './Button.js';
+import InputMask from 'react-input-mask';
 
-const EditEmployeeCard = ({
-  onAddClick,
-  onChange,
-  inputsValue,
-  isEditEmployee,
-  onSaveClick,
-  cancelCreate
-}) => {
-  let {
-    name,
-    surname,
-    phone,
-    manager,
-    photoLink,
-    position,
-    secondname,
-    photo,
-    peoples
-  } = inputsValue;
-  let inputsNotComplete = !(name && surname && phone && secondname);
-  console.log(peoples);
-  return (
-    <div className="edit-employee-card">
-      <h3>
-        {!isEditEmployee
-          ? "Добавление нового сотрудника"
-          : "Редактирование сотрудника"}
-      </h3>
-      <input
-        id="name"
-        placeholder="Имя"
-        type="text"
-        value={name}
-        onChange={onChange}
-      />
-      <input
-        id="surname"
-        placeholder="Фамилия"
-        value={surname}
-        onChange={onChange}
-      />
-      <input
-        id="secondname"
-        placeholder="Отчество"
-        value={secondname}
-        onChange={onChange}
-      />
+
+const EditEmployeeCard = ({...props})=>{
+  let {name,surname,phone,manager,photoLink,position,secondname,photo,peoples} = props.editInputs;
+  let inputsNotComplete =  !(name && surname && phone && secondname);
+  let peoplesStr = peoples.join(' ');
+  let inputsArray = [
+    { id: "name", placeholder: "Имя", value:  name  },
+    { id: "surname", placeholder: "Фамилия", value:  surname  },
+    { id: "secondname", placeholder: "Отчество", value:  secondname  },
+    { id: "manager", placeholder: "Начальник", value:  manager  },
+    { id: "position", placeholder: "Должность", value:  position  },
+    { id: "photoLink", placeholder: "Ссылка на фото", value:  photoLink  },
+    { id: "peoples", placeholder: "Подчиненные", value:  peoplesStr  }
+  ];
+
+
+  return(
+    <div className='edit-employee-card'>
+      <h3>{!props.isEditButtonClicked
+         ? 'Добавление нового сотрудника'
+         : 'Редактирование сотрудника' }
+       </h3>
+      {inputsArray.map(el =>
+          <input
+            {...el}
+            onChange={props.onChange}
+          />
+      )}
       <InputMask
-        id="phone"
-        placeholder="Телефон"
-        value={phone}
-        onChange={onChange}
-        mask="8\(999) 999-99-99"
-        maskChar=" "
-      />
-      <input
-        id="manager"
-        placeholder="Начальник"
-        value={manager}
-        onChange={onChange}
-      />
-      <input
-        id="position"
-        placeholder="Должность"
-        value={position}
-        onChange={onChange}
-      />
-      <input
-        id="photoLink"
-        placeholder="Ссылка на фото"
-        value={photo}
-        onChange={onChange}
-      />
-      <input
-        id="peoples"
-        placeholder="Подчиненные"
-        value={peoples.join(" ")}
-        onChange={onChange}
-      />
+         id ='phone'
+         placeholder = "Телефон"
+         value={phone}
+         onChange={props.onChange}
+         mask="8\(999) 999-99-99"
+         maskChar=" " />
       <div>
-        <Button onClick={cancelCreate} name={"Отмена"} color={"#a4b0be"} />
-        {!isEditEmployee ? (
-          <Button
-            onClick={() =>
-              onAddClick({
-                name,
-                surname,
-                secondname,
-                phone,
-                manager,
-                photo: photoLink,
-                position,
-                id: Date.now()
-              })
-            }
-            name={"Добавить"}
-            color={"#0984e3"}
-            disabled={inputsNotComplete}
-          />
-        ) : (
-          <Button
-            onClick={onSaveClick}
-            name={"Сохранить"}
-            color={"#0984e3"}
-            disabled={inputsNotComplete}
-          />
-        )}
-      </div>
+
+      <Button onClick={props.cancelCreate} name={'Отмена'} color={'#a4b0be'}/>
+      {!props.isEditButtonClicked?
+        <Button onClick={()=>props.onAddClick({...props.editInputs,id:Date.now()})}
+           name={'Добавить'} color={'#0984e3'}
+           disabled={inputsNotComplete}
+         />
+        : <Button
+          onClick={props.onSaveClick}
+          name={'Сохранить'}
+          color={'#0984e3'}
+          disabled={inputsNotComplete} />
+      }
     </div>
-  );
-};
+     </div>
+  )
+}
 
 export default EditEmployeeCard;

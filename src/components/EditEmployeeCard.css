@@ -1,8 +1,8 @@
-.edit-employee-card{
+.edit-employee-card {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width:350px;
+  width: 350px;
   height: 600px;
   background-color: white;
   margin: 10px;
@@ -10,14 +10,14 @@
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.28);
 }
 
-input{
+input {
   margin: 8px;
   width: 340px;
-    font-size:14px;
-    padding:10px 10px 10px 5px;
-    display:block;
-    width:300px;
-    border:none;
-    border-bottom:1px solid white;
-    background-color:#f1f2f6;
+  font-size: 14px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: #f1f2f6;
 }

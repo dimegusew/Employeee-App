@@ -55,16 +55,17 @@ class App extends Component {
           <div className="App">
             <Header onCreateClick={()=>toEditEmloyeeSwitch(isEditEmployeePage)}/>
             <div className="Employee-list">
+
               <EmployeesListHeader
                 onClick={el =>
                   sortParam(el.target.id, Employees, isReverseSort)
                 }
-                sortDirection={isReverseSort}
+                {...this.props}
               />
 
               <EmployeesList
-                Employees={PageOfEmployees}
-                showedEmployee={showedEmployee}
+                PageOfEmployees={PageOfEmployees}
+
                 onClick={id => showEmployeeInfo(parseInt(id, 10), Employees)}
                 MoveToPrevPage={() =>
                   moveToPrevPage(pagination, Employees.length)
@@ -72,11 +73,11 @@ class App extends Component {
                 MoveToNextPage={() =>
                   moveToNextPage(pagination, Employees.length)
                 }
+                {...this.props}
               />
             </div>
 
             <EmployeeCard
-              showedEmployee={showedEmployee}
               onPermittedDeleteClick={() =>
                 deleteEmployee(
                   showedEmployee.id,
@@ -85,10 +86,10 @@ class App extends Component {
                 )
               }
               onClick={() => deleteButtonClicked(deleteButtonIsClicked)}
-              deleteButtonIsClicked={deleteButtonIsClicked}
               onEditClick={() =>
                 editButtonClicked(showedEmployee, isEditButtonClicked,isEditEmployeePage)
               }
+              {...this.props}
             />
           </div>
         ) : (
@@ -97,12 +98,11 @@ class App extends Component {
             onChange={el =>
               changeEditInputs(el.target.id, el.target.value, editInputs)
             }
-            inputsValue={editInputs}
-            isEditEmployee={isEditButtonClicked}
             onSaveClick={() =>
               editEmployee(showedEmployee.id, Employees, editInputs,isEditEmployeePage,isEditButtonClicked)
             }
             cancelCreate ={()=>cancelCreate(isEditEmployeePage,isEditButtonClicked)}
+              {...this.props}
           />
         )}
       </div>
